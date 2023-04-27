@@ -11,7 +11,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\File;
 
-class AdsController extends Controller
+class AdvertisementController extends Controller
 {
     public function index()
     {

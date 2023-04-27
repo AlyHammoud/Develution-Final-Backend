@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\V1\AdsController;
+use App\Http\Controllers\Api\V1\AdvertisementController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CategoriesController;
 use App\Http\Controllers\Api\V1\ItemsController;
@@ -146,8 +146,8 @@ Route::get('/mostViewedProductsByCategory', [SiteDataController::class, 'getMost
 //
 
 
-Route::post('/add-new-ad', [AdsController::class, 'store'])->middleware('auth:sanctum');
-Route::get('/get-all-ad', [AdsController::class, 'index']);
-Route::delete('/delete-ad/{ad}', [AdsController::class, 'destroy'])->middleware('auth:sanctum');
-Route::get('/get-ad/{ad}', [AdsController::class, 'show']);
-Route::put('/update-ad/{ad}', [AdsController::class, 'update'])->middleware('auth:sanctum');
+Route::post('/add-new-ad', [AdvertisementController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/get-all-ad', [AdvertisementController::class, 'index']);
+Route::delete('/delete-ad/{ad}', [AdvertisementController::class, 'destroy'])->middleware('auth:sanctum');
+Route::get('/get-ad/{ad}', [AdvertisementController::class, 'show']);
+Route::put('/update-ad/{ad}', [AdvertisementController::class, 'update'])->middleware('auth:sanctum');
