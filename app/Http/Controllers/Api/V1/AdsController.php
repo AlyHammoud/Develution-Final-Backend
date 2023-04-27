@@ -53,7 +53,7 @@ class AdsController extends Controller
             $data['image'] = $image_path;
         }
         $ad->update($data);
-        return response('done');
+        return response(['status' => true]);
     }
 
     public function destroy(Ads $ad)
