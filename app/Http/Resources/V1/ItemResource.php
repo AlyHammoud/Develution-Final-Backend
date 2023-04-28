@@ -43,7 +43,8 @@ class ItemResource extends JsonResource
                     'product.allFilteredProducts',
                     'siteData.mostViewedProducts',
                     'products.newest',
-                    'siteData.mostViewedProductsByCategory'
+                    'siteData.mostViewedProductsByCategory',
+                    'all-advert'
                 ]
             ), $this->category)
         ];
