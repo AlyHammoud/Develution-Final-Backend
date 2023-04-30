@@ -32,11 +32,25 @@ class AdvertisementController extends Controller
 
     public function show(Ads $ad)
     {
+        $page = request()->query('page', '');
+        $full = request()->query('full', '');
+        
         $ad['product_ids'] = explode(',', $ad['product_ids'][0]);
-
-        $ad['products'] =  ProductResource::collection(Product::whereIn('id', $ad['product_ids'])->paginate(50));
-        $ad['image'] = URL::to('images/ads/' . $ad['image']);
-        return response($ad);
+        
+        if(!$page && !$full){
+             $ad['products'] =  ProductResource::collection(Product::whereIn('id', $ad['product_ids'])->paginate(50));
+             $ad['image'] = URL::to('images/ads/' . $ad['image']);
+             return response($ad);
+        }
+        
+        if($full){
+             $ad['image'] = URL::to('images/ads/' . $ad['image']);
+             return response($ad);
+        }
+        
+        $products =  ProductResource::collection(Product::whereIn('id', $ad['product_ids'])->paginate(2));
+        
+        return $products;
     }
 
     public function update(UpdateAdsRequest $request, Ads $ad)
