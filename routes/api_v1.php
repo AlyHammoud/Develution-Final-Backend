@@ -149,5 +149,5 @@ Route::get('/mostViewedProductsByCategory', [SiteDataController::class, 'getMost
 Route::post('/add-new-ad', [AdvertisementController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/get-all-advert', [AdvertisementController::class, 'index'])->name('all-advert');
 Route::delete('/delete-ad/{ad}', [AdvertisementController::class, 'destroy'])->middleware('auth:sanctum');
-Route::get('/get-ad/{ad}', [AdvertisementController::class, 'show']);
+Route::get('/get-ad/{ad}', [AdvertisementController::class, 'show'])->name('single-advert');
 Route::put('/update-ad/{ad}', [AdvertisementController::class, 'update'])->middleware('auth:sanctum');
