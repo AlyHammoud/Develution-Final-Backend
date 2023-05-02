@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\AdvertisementController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CategoriesController;
+use App\Http\Controllers\Api\V1\GeneralInfosController;
 use App\Http\Controllers\Api\V1\ItemsController;
 use App\Http\Controllers\Api\V1\ProductsController;
 use App\Http\Controllers\Api\V1\SiteDataController;
@@ -12,7 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\V1\UserResource;
 
 use App\Http\Controllers\Api\V1\VerifyEmailController;
-
+use App\Models\GeneralInfo;
 
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['signed', 'throttle:6,1'])
@@ -151,3 +152,9 @@ Route::get('/get-all-advert', [AdvertisementController::class, 'index'])->name('
 Route::delete('/delete-ad/{ad}', [AdvertisementController::class, 'destroy'])->middleware('auth:sanctum');
 Route::get('/get-ad/{ad}', [AdvertisementController::class, 'show'])->name('single-advert');
 Route::put('/update-ad/{ad}', [AdvertisementController::class, 'update'])->middleware('auth:sanctum');
+
+
+
+Route::post('/general-info', [GeneralInfosController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/general-info', [GeneralInfosController::class, 'index'])->middleware('auth:sanctum');
+Route::put('/general-info/{generalInfo}', [GeneralInfosController::class, 'update'])->middleware('auth:sanctum');
