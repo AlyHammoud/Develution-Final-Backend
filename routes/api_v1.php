@@ -156,5 +156,5 @@ Route::put('/update-ad/{ad}', [AdvertisementController::class, 'update'])->middl
 
 
 Route::post('/general-info', [GeneralInfosController::class, 'store'])->middleware('auth:sanctum');
-Route::get('/general-info', [GeneralInfosController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/general-info', [GeneralInfosController::class, 'index']);
 Route::put('/general-info/{generalInfo}', [GeneralInfosController::class, 'update'])->middleware('auth:sanctum');

@@ -328,6 +328,6 @@ class ProductsController extends Controller
 
     public function newestProducts()
     {
-        return ProductResource::collection(Product::with('productImages', 'item')->orderBy('created_at', 'desc')->limit(2)->get());
+        return ProductResource::collection(Product::with('productImages', 'item')->where("is_available", 1)->orderBy('created_at', 'desc')->limit(2)->get());
     }
 }

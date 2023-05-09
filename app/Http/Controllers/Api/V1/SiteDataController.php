@@ -27,6 +27,7 @@ class SiteDataController extends Controller
             Product::join('laravisits', 'products.id', '=', 'laravisits.visitable_id')
             ->where('laravisits.visitable_type', 'App\Models\Product')
             ->select(DB::raw('COUNT(products.id) as count'), 'products.*')
+            ->where('products.is_available', '1')
             ->groupBy('products.id', 'products.is_available', 'products.price', 'item_id', 'products.created_at', 'products.updated_at')
             // ->groupBy('products.id') // use when config/database.php mysql mode [allaw group by one column]
             ->orderBy(DB::raw('COUNT(products.id)'), 'desc')
@@ -47,6 +48,7 @@ class SiteDataController extends Controller
                 Product::join('laravisits', 'products.id', '=', 'laravisits.visitable_id')
                 ->where('laravisits.visitable_type', 'App\Models\Product')
                 ->select(DB::raw('COUNT(products.id) as count'), 'products.*')
+                ->where('products.is_available', '1')
                 ->groupBy('products.id', 'products.is_available', 'products.price', 'item_id', 'products.created_at', 'products.updated_at')
                 ->whereIn('products.id', $prds)
                 // ->groupBy('products.id') // use when config/database.php mysql mode [allaw group by one column]
@@ -99,6 +101,7 @@ class SiteDataController extends Controller
             Product::join('laravisits', 'products.id', '=', 'laravisits.visitable_id')
             ->where('laravisits.visitable_type', 'App\Models\Product')
             ->select(DB::raw('COUNT(products.id) as count'), 'products.*')
+            ->where('products.is_available', '1')
             ->groupBy('products.id', 'products.is_available', 'products.price', 'item_id', 'products.created_at', 'products.updated_at')
             // ->groupBy('products.id') // use when config/database.php mysql mode [allaw group by one column]
             ->orderBy(DB::raw('COUNT(products.id)'), 'desc')

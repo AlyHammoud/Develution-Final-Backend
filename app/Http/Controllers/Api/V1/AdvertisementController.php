@@ -20,7 +20,7 @@ class AdvertisementController extends Controller
         foreach ($all_ads as $key => $value) {
             $value['product_ids'] = explode(',', $value['product_ids'][0]);
 
-            $all_ads[$key]['products'] = ProductResource::collection(Product::whereIn('id', $value['product_ids'])->paginate(50));
+            $all_ads[$key]['products'] = ProductResource::collection(Product::where("is_available", 1)->whereIn('id', $value['product_ids'])->paginate(50));
             $all_ads[$key]['image'] = URL::to('images/ads/' . $all_ads[$key]['image']);
         }
 
@@ -38,7 +38,7 @@ class AdvertisementController extends Controller
         $ad['product_ids'] = explode(',', $ad['product_ids'][0]);
         
         if(!$page && !$full){
-             $ad['products'] =  ProductResource::collection(Product::whereIn('id', $ad['product_ids'])->paginate(50));
+             $ad['products'] =  ProductResource::collection(Product::where("is_available", 1)->whereIn('id', $ad['product_ids'])->paginate(50));
              $ad['image'] = URL::to('images/ads/' . $ad['image']);
              return response($ad);
         }
@@ -48,7 +48,7 @@ class AdvertisementController extends Controller
              return response($ad);
         }
         
-        $products =  ProductResource::collection(Product::whereIn('id', $ad['product_ids'])->paginate(2));
+        $products =  ProductResource::collection(Product::where("is_available", 1)->whereIn('id', $ad['product_ids'])->paginate(20));
         
         return $products;
     }
